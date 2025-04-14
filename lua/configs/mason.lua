@@ -1,18 +1,19 @@
-local options = {
+local opts = {
   ensure_installed = {
     --- language servers
     "gopls",
     "elixir-ls",
-    "pyright",
-    "rust-analyzer",
     "clangd",
     "ols",
-    "gleam",
     "lua-language-server",
-
+    "clojure-lsp",
     --- formatters
     "stylua",
     "golines",
+    "goimports",
+    "goimports-reviser",
+    "gofumpt",
+    "cljfmt",
   },
   PATH = "skip",
 
@@ -37,4 +38,7 @@ local options = {
 
   max_concurrent_installers = 10,
 }
-return options
+
+return opts
+
+

@@ -1,17 +1,14 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    go = { "golines", "gofumpt", "goimports", "goimports-reviser" }
-    -- css = { "prettier" },
-    -- html = { "prettier" },
-
+    go = { "golines", "gofumpt", "goimports", "goimports-reviser" },
+    clojure = { "cljfmt" },
   },
-
-  -- format_on_save = {
-  --   -- These options will be passed to conform.format()
-  --   timeout_ms = 500,
-  --   lsp_fallback = true,
-  -- },
+  formatters = {
+    stylua = {
+      prepend_args = { "--indent-width", "2" },
+    },
+  },
 }
 
 require("conform").setup(options)

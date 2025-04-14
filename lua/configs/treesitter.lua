@@ -5,52 +5,52 @@ local options = {
     "luadoc",
     "printf",
     "vim",
-"vimdoc",
-    
-        -- web dev
-        "html",
-        "css",
-        "astro",
-        "vue",
-        "javascript",
-        "typescript",
-        "tsx",
+    "vimdoc",
 
-        -- backend
-        "go",
-        "python",
-        "htmldjango",
-        "phpdoc",
-        "php_only",
+    -- web dev
+    "html",
+    "css",
+    "astro",
+    "vue",
+    "javascript",
+    "typescript",
+    "tsx",
 
-        -- functional
-        "haskell",
-        "haskell_persistent",
-        "elixir",
-        "gleam",
-        "elm",
-        "erlang",
+    -- backend
+    "go",
+    "python",
+    "htmldjango",
+    "phpdoc",
+    "php_only",
 
-        -- tools
-        "cmake",
-        "make",
-        "gomod",
-        "gowork",
-        "gosum",
-        "json",
-        "toml",
-        "yaml",
-        "markdown",
+    -- functional
+    "haskell",
+    "haskell_persistent",
+    "elixir",
+    "gleam",
+    "elm",
+    "erlang",
+    "clojure",
 
-        -- graphics
-        "glsl",
+    -- tools
+    "cmake",
+    "make",
+    "gomod",
+    "gowork",
+    "gosum",
+    "json",
+    "toml",
+    "yaml",
+    "markdown",
 
-        -- low level
-        "c",
-        "cpp",
-        "odin",
-        "rust",
+    -- graphics
+    "glsl",
 
+    -- low level
+    "c",
+    "cpp",
+    "odin",
+    "rust",
   },
 
   highlight = {
@@ -59,7 +59,6 @@ local options = {
   },
 
   indent = { enable = true },
-  
 }
 
 return options

@@ -1,6 +1,5 @@
 local lspconfig = require "lspconfig"
-local configs = require "lspconfig.configs"
-local cmp_lsp = require "cmp_nvim_lsp"
+local util = require "lspconfig.util"
 
 local M = {}
 M.on_attach = function(client, bufnr)
@@ -9,13 +8,9 @@ M.on_attach = function(client, bufnr)
   end
 end
 
-M.capabilities =
-  vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
--- M.capabilities =
-  -- vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities())
-
-
+M.capabilities = vim.tbl_deep_extend("force",{}, capabilities)
 
 -- lsps with default config
 lspconfig.clangd.setup {
@@ -23,16 +18,7 @@ lspconfig.clangd.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
 }
-lspconfig.rust_analyzer.setup {
-  autostart = true,
-  on_attach = M.on_attach,
-  capabilities = M.capabilities,
-}
-lspconfig.pyright.setup {
-  autostart = true,
-  on_attach = M.on_attach,
-  capabilities = M.capabilities,
-}
+
 lspconfig.gopls.setup {
   autostart = true,
   on_attach = M.on_attach,
@@ -57,26 +43,19 @@ lspconfig.elixirls.setup {
   capabilities = M.capabilities,
 }
 
-configs.onyx = {
-  default_config = {
-    cmd = { "onyx", "lsp" },
-    filetypes = { "onyx" },
-    root_dir = function(filename)
-      local utils = require "lspconfig.util"
-      return utils.search_ancestors(filename, function(path)
-        if utils.path.is_file(utils.path.join(path, "onyx-lsp.kdl")) then
-          return path
-        end
-        if utils.path.is_file(utils.path.join(path, "onyx-pkg.kdl")) then
-          return path
-        end
-      end)
-    end,
-    settings = {},
-  },
+lspconfig.clojure_lsp.setup {
+  autostart = true,
+  cmd = { "clojure-lsp" },
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
 }
 
-lspconfig.onyx.setup {
+lspconfig.tinymist.setup {
+  autostart = true,
+  root_dir = function(fname)
+    return util.path.dirname(fname)
+  end,
+
   on_attach = M.on_attach,
   capabilities = M.capabilities,
 }

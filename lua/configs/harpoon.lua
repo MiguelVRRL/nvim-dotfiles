@@ -33,15 +33,13 @@ local function toggle_telescope(harpoon_files)
       finder = require("telescope.finders").new_table {
         results = file_paths,
       },
-      set_env = conf.set_env,
-      color_devicons = true,
+      set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
       previewer = conf.file_previewer {},
-      grep_previewer = conf.grep_previewer {
-        color_devicons = true
-      },
-      qflist_previewer = conf.qflist_previewer {
-        color_devicons = true
-      },
+      color_devicons = true,
+      file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+      grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+      qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+      buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
       layout_config = {
         preview_cutoff = 1,
         width = function(_, max_columns, _)

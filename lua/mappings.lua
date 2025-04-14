@@ -11,40 +11,20 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 
-
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "file save" })
-map("v", 'y', '"+y', { desc = "file copy whole" })
-map("n", 'y', '"+y$', { desc = "file copy whole" })
-map("n", '<C-x>', '"+d$')
+map("v", "y", '"+y', { desc = "file copy whole" })
+map("n", "y", '"+y$', { desc = "file copy whole" })
+map("n", "<C-x>", '"+d$')
 -- Current selection (visual mode)
-map("v", '<C-x>', '"+d')
-
-
+map("v", "<C-x>", '"+d')
 
 map("n", "<leader>fm", function()
   require("conform").format { lsp_fallback = true }
 end, { desc = "format files" })
 
-
--- tabufline
--- map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
---[[
-map("n", "<tab>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "buffer goto next" })
-
-map("n", "<S-tab>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "buffer goto prev" })
-
-map("n", "<leader>x", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "buffer close" })
-]]
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "comment toggle", remap = true })
 map("v", "<leader>/", "gc", { desc = "comment toggle", remap = true })
-
 
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
@@ -56,7 +36,7 @@ map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = 
 map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 map("n", "<C-f>", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
-map("n", "<C-t>", "<cmd>Telescope colorscheme<cr>", { desc = "theme switcher"})
+map("n", "<C-t>", "<cmd>Telescope colorscheme<cr>", { desc = "theme switcher" })
 map(
   "n",
   "<leader>fa",
@@ -87,8 +67,14 @@ map("n", "<leader>cc", function()
   end
 end, { desc = "blankline jump to current context" })
 
+-- mini.completion
+local imap_expr = function(lhs, rhs)
+  vim.keymap.set("i", lhs, rhs, { expr = true })
+end
+imap_expr("<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
+imap_expr("<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
 
--- taby 
+-- taby
 vim.api.nvim_set_keymap("n", "<C-a>", ":$tabnew<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-S-x>", ":tabclose<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<Tab>", ":tabn<CR>", { noremap = true })
